@@ -1,0 +1,21 @@
+{
+	"name": "@dsbunny/ktx-schema",
+	"version": "1.0.0",
+	"description": "Schema for KTX CLI",
+	"type": "module",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"author": "Steve-o <fnjordy@gmail.com>",
+	"license": "MIT",
+	"private": false,
+	"scripts": {
+		"build": "tsc",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"dependencies": {
+		"zod": "4.0.0-beta.20250505T195954"
+	},
+	"devDependencies": {
+		"typescript": "^5.5.3"
+	}
+}
