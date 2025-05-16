@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from 'zod/v4';
 export declare const VK_FORMATS: z.ZodEnum<{
     VK_FORMAT_UNDEFINED: "VK_FORMAT_UNDEFINED";
     VK_FORMAT_R4G4_UNORM_PACK8: "VK_FORMAT_R4G4_UNORM_PACK8";
