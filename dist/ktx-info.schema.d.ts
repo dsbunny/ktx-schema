@@ -804,38 +804,38 @@ export declare const HeaderSchema: z.ZodObject<{
         KTX_SS_ZSTD: "KTX_SS_ZSTD";
         KTX_SS_ZLIB: "KTX_SS_ZLIB";
     }>;
-}, {}, {}>;
+}, z.core.$strip>;
 export type HeaderSchema = z.infer<typeof HeaderSchema>;
 export declare const OffsetLengthSchema: z.ZodObject<{
     byteOffset: z.ZodNumber;
     byteLength: z.ZodNumber;
-}, {}, {}>;
+}, z.core.$strip>;
 export type OffsetLengthSchema = z.infer<typeof OffsetLengthSchema>;
 export declare const LevelSchema: z.ZodObject<{
     byteOffset: z.ZodNumber;
     byteLength: z.ZodNumber;
     uncompressedByteLength: z.ZodNumber;
-}, {}, {}>;
+}, z.core.$strip>;
 export type LevelSchema = z.infer<typeof LevelSchema>;
 export declare const IndexSchema: z.ZodObject<{
     dataFormatDescriptor: z.ZodObject<{
         byteOffset: z.ZodNumber;
         byteLength: z.ZodNumber;
-    }, {}, {}>;
+    }, z.core.$strip>;
     keyValueData: z.ZodObject<{
         byteOffset: z.ZodNumber;
         byteLength: z.ZodNumber;
-    }, {}, {}>;
+    }, z.core.$strip>;
     supercompressionGlobalData: z.ZodObject<{
         byteOffset: z.ZodNumber;
         byteLength: z.ZodNumber;
-    }, {}, {}>;
+    }, z.core.$strip>;
     levels: z.ZodArray<z.ZodObject<{
         byteOffset: z.ZodNumber;
         byteLength: z.ZodNumber;
         uncompressedByteLength: z.ZodNumber;
-    }, {}, {}>>;
-}, {}, {}>;
+    }, z.core.$strip>>;
+}, z.core.$strip>;
 export type IndexSchema = z.infer<typeof IndexSchema>;
 export declare const QuadNumberArraySchema: z.ZodTuple<[z.ZodNumber, z.ZodNumber, z.ZodNumber, z.ZodNumber], null>;
 export type QuadNumberArraySchema = z.infer<typeof QuadNumberArraySchema>;
@@ -958,7 +958,7 @@ export declare const SampleSchema: z.ZodObject<{
     samplePosition: z.ZodTuple<[z.ZodNumber, z.ZodNumber, z.ZodNumber, z.ZodNumber], null>;
     sampleLower: z.ZodNumber;
     sampleUpper: z.ZodNumber;
-}, {}, {}>;
+}, z.core.$strip>;
 export type SampleSchema = z.infer<typeof SampleSchema>;
 export declare const DataFormatDescriptorBlockSchema: z.ZodObject<{
     descriptorType: z.ZodEnum<{
@@ -1165,8 +1165,8 @@ export declare const DataFormatDescriptorBlockSchema: z.ZodObject<{
         samplePosition: z.ZodTuple<[z.ZodNumber, z.ZodNumber, z.ZodNumber, z.ZodNumber], null>;
         sampleLower: z.ZodNumber;
         sampleUpper: z.ZodNumber;
-    }, {}, {}>>;
-}, {}, {}>;
+    }, z.core.$strip>>;
+}, z.core.$strip>;
 export type DataFormatDescriptorBlockSchema = z.infer<typeof DataFormatDescriptorBlockSchema>;
 export declare const DataFormatDescriptorSchema: z.ZodObject<{
     totalSize: z.ZodNumber;
@@ -1375,15 +1375,15 @@ export declare const DataFormatDescriptorSchema: z.ZodObject<{
             samplePosition: z.ZodTuple<[z.ZodNumber, z.ZodNumber, z.ZodNumber, z.ZodNumber], null>;
             sampleLower: z.ZodNumber;
             sampleUpper: z.ZodNumber;
-        }, {}, {}>>;
-    }, {}, {}>>;
-}, {}, {}>;
+        }, z.core.$strip>>;
+    }, z.core.$strip>>;
+}, z.core.$strip>;
 export type DataFormatDescriptorSchema = z.infer<typeof DataFormatDescriptorSchema>;
 export declare const KeyValueDataSchema: z.ZodObject<{
     KTXorientation: z.ZodString;
     KTXwriter: z.ZodString;
     KTXwriterScParams: z.ZodString;
-}, {}, {}>;
+}, z.core.$strip>;
 export type KeyValueDataSchema = z.infer<typeof KeyValueDataSchema>;
 export declare const KTXInfoSchema: z.ZodObject<{
     $schema: z.ZodOptional<z.ZodString>;
@@ -1697,26 +1697,26 @@ export declare const KTXInfoSchema: z.ZodObject<{
             KTX_SS_ZSTD: "KTX_SS_ZSTD";
             KTX_SS_ZLIB: "KTX_SS_ZLIB";
         }>;
-    }, {}, {}>;
+    }, z.core.$strip>;
     index: z.ZodObject<{
         dataFormatDescriptor: z.ZodObject<{
             byteOffset: z.ZodNumber;
             byteLength: z.ZodNumber;
-        }, {}, {}>;
+        }, z.core.$strip>;
         keyValueData: z.ZodObject<{
             byteOffset: z.ZodNumber;
             byteLength: z.ZodNumber;
-        }, {}, {}>;
+        }, z.core.$strip>;
         supercompressionGlobalData: z.ZodObject<{
             byteOffset: z.ZodNumber;
             byteLength: z.ZodNumber;
-        }, {}, {}>;
+        }, z.core.$strip>;
         levels: z.ZodArray<z.ZodObject<{
             byteOffset: z.ZodNumber;
             byteLength: z.ZodNumber;
             uncompressedByteLength: z.ZodNumber;
-        }, {}, {}>>;
-    }, {}, {}>;
+        }, z.core.$strip>>;
+    }, z.core.$strip>;
     dataFormatDescriptor: z.ZodObject<{
         totalSize: z.ZodNumber;
         blocks: z.ZodArray<z.ZodObject<{
@@ -1924,13 +1924,13 @@ export declare const KTXInfoSchema: z.ZodObject<{
                 samplePosition: z.ZodTuple<[z.ZodNumber, z.ZodNumber, z.ZodNumber, z.ZodNumber], null>;
                 sampleLower: z.ZodNumber;
                 sampleUpper: z.ZodNumber;
-            }, {}, {}>>;
-        }, {}, {}>>;
-    }, {}, {}>;
+            }, z.core.$strip>>;
+        }, z.core.$strip>>;
+    }, z.core.$strip>;
     keyValueData: z.ZodObject<{
         KTXorientation: z.ZodString;
         KTXwriter: z.ZodString;
         KTXwriterScParams: z.ZodString;
-    }, {}, {}>;
-}, {}, {}>;
+    }, z.core.$strip>;
+}, z.core.$strip>;
 export type KTXInfoSchema = z.infer<typeof KTXInfoSchema>;
