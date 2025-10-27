@@ -1,6 +1,6 @@
 // vim: tabstop=8 softtabstop=0 noexpandtab shiftwidth=8 nosmarttab
 // REF: https://github.com/KhronosGroup/KTX-Software/blob/a3603eda5c068cd91ab9729b3dddd81e5967ed88/tools/ktx/schema/info.json
-import { z } from 'zod/v4';
+import * as z from "zod";
 // Define enum-like constants
 export const VK_FORMATS = z.enum([
     "VK_FORMAT_UNDEFINED",
