@@ -1,4 +1,7 @@
 # Changelog
+## v1.1.3
+- Bump to `zod@4.3.6`.
+
 ## v1.1.2
 - Bump to `zod@4.1.11`.
 - Move Zod to `peerDependencies` so users can bring their own Zod.
