@@ -593,10 +593,21 @@ export const DataFormatDescriptorSchema = z.object({
 });
 export type DataFormatDescriptorSchema = z.infer<typeof DataFormatDescriptorSchema>;
 
-export const KeyValueDataSchema = z.object({
-	KTXorientation: z.string(),
+export const MessageSchema = z.union([
+	z.string(),
+	z.looseObject({
+		id: z.number().optional(),
+		type: z.string().optional(),
+		message: z.string(),
+		details: z.string().optional(),
+	}),
+]);
+export type MessageSchema = z.infer<typeof MessageSchema>;
+
+export const KeyValueDataSchema = z.looseObject({
+	KTXorientation: z.string().optional(),
 	KTXwriter: z.string(),
-	KTXwriterScParams: z.string(),
+	KTXwriterScParams: z.string().optional(),
 });
 export type KeyValueDataSchema = z.infer<typeof KeyValueDataSchema>;
 
@@ -604,7 +615,7 @@ export type KeyValueDataSchema = z.infer<typeof KeyValueDataSchema>;
 export const KTXInfoSchema = z.object({
 	$schema: z.string().optional(),
 	valid: z.boolean(),
-	messages: z.array(z.string()),
+	messages: z.array(MessageSchema),
 	header: HeaderSchema,
 	index: IndexSchema,
 	dataFormatDescriptor: DataFormatDescriptorSchema,

@@ -1379,16 +1379,28 @@ export declare const DataFormatDescriptorSchema: z.ZodObject<{
     }, z.core.$strip>>;
 }, z.core.$strip>;
 export type DataFormatDescriptorSchema = z.infer<typeof DataFormatDescriptorSchema>;
+export declare const MessageSchema: z.ZodUnion<readonly [z.ZodString, z.ZodObject<{
+    id: z.ZodOptional<z.ZodNumber>;
+    type: z.ZodOptional<z.ZodString>;
+    message: z.ZodString;
+    details: z.ZodOptional<z.ZodString>;
+}, z.core.$loose>]>;
+export type MessageSchema = z.infer<typeof MessageSchema>;
 export declare const KeyValueDataSchema: z.ZodObject<{
-    KTXorientation: z.ZodString;
+    KTXorientation: z.ZodOptional<z.ZodString>;
     KTXwriter: z.ZodString;
-    KTXwriterScParams: z.ZodString;
-}, z.core.$strip>;
+    KTXwriterScParams: z.ZodOptional<z.ZodString>;
+}, z.core.$loose>;
 export type KeyValueDataSchema = z.infer<typeof KeyValueDataSchema>;
 export declare const KTXInfoSchema: z.ZodObject<{
     $schema: z.ZodOptional<z.ZodString>;
     valid: z.ZodBoolean;
-    messages: z.ZodArray<z.ZodString>;
+    messages: z.ZodArray<z.ZodUnion<readonly [z.ZodString, z.ZodObject<{
+        id: z.ZodOptional<z.ZodNumber>;
+        type: z.ZodOptional<z.ZodString>;
+        message: z.ZodString;
+        details: z.ZodOptional<z.ZodString>;
+    }, z.core.$loose>]>>;
     header: z.ZodObject<{
         identifier: z.ZodString;
         vkFormat: z.ZodEnum<{
@@ -1928,9 +1940,9 @@ export declare const KTXInfoSchema: z.ZodObject<{
         }, z.core.$strip>>;
     }, z.core.$strip>;
     keyValueData: z.ZodObject<{
-        KTXorientation: z.ZodString;
+        KTXorientation: z.ZodOptional<z.ZodString>;
         KTXwriter: z.ZodString;
-        KTXwriterScParams: z.ZodString;
-    }, z.core.$strip>;
+        KTXwriterScParams: z.ZodOptional<z.ZodString>;
+    }, z.core.$loose>;
 }, z.core.$strip>;
 export type KTXInfoSchema = z.infer<typeof KTXInfoSchema>;

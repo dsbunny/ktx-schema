@@ -1,4 +1,7 @@
 # Changelog
+## v1.1.4
+- Explicitly define schema for messages.
+
 ## v1.1.3
 - Bump to `zod@4.3.6`.
 
