@@ -514,7 +514,7 @@ export const IMAGE_FLAGS = z.enum([
 ]);
 
 // Schema definitions
-export const HeaderSchema = z.object({
+export const KTXHeaderSchema = z.object({
 	identifier: z.string(),
 	vkFormat: VK_FORMATS,
 	typeSize: z.number(),
@@ -526,30 +526,31 @@ export const HeaderSchema = z.object({
 	levelCount: z.number(),
 	supercompressionScheme: SUPERCOMPRESSION_SCHEMES,
 });
-export type HeaderSchema = z.infer<typeof HeaderSchema>;
+export type KTXHeader = z.infer<typeof KTXHeaderSchema>;
 
-export const OffsetLengthSchema = z.object({
+export const KTXOffsetLengthSchema = z.object({
 	byteOffset: z.number(),
 	byteLength: z.number(),
 });
-export type OffsetLengthSchema = z.infer<typeof OffsetLengthSchema>;
+export type KTXOffsetLength = z.infer<typeof KTXOffsetLengthSchema>;
 
-export const LevelSchema = OffsetLengthSchema.extend({
+export const KTXLevelSchema = KTXOffsetLengthSchema.extend({
 	uncompressedByteLength: z.number(),
 });
-export type LevelSchema = z.infer<typeof LevelSchema>;
+export type KTXLevel = z.infer<typeof KTXLevelSchema>;
 
-export const IndexSchema = z.object({
-	dataFormatDescriptor: OffsetLengthSchema,
-	keyValueData: OffsetLengthSchema,
-	supercompressionGlobalData: OffsetLengthSchema,
-	levels: z.array(LevelSchema),
+export const KTXIndexSchema = z.object({
+	dataFormatDescriptor: KTXOffsetLengthSchema,
+	keyValueData: KTXOffsetLengthSchema,
+	supercompressionGlobalData: KTXOffsetLengthSchema,
+	levels: z.array(KTXLevelSchema),
 });
-export type IndexSchema = z.infer<typeof IndexSchema>;
+export type KTXIndex = z.infer<typeof KTXIndexSchema>;
 
-export const QuadNumberArraySchema = z.tuple([z.number(), z.number(), z.number(), z.number()]);
-export type QuadNumberArraySchema = z.infer<typeof QuadNumberArraySchema>;
-export const OctetNumberArraySchema = z.tuple([
+export const KTXQuadNumberArraySchema = z.tuple([z.number(), z.number(), z.number(), z.number()]);
+export type KTXQuadNumberArray = z.infer<typeof KTXQuadNumberArraySchema>;
+
+export const KTXOctetNumberArraySchema = z.tuple([
 	z.number(),
 	z.number(),
 	z.number(),
@@ -559,20 +560,20 @@ export const OctetNumberArraySchema = z.tuple([
 	z.number(),
 	z.number(),
 ]);
-export type OctetNumberArraySchema = z.infer<typeof OctetNumberArraySchema>;
+export type KTXOctetNumberArray = z.infer<typeof KTXOctetNumberArraySchema>;
 
-export const SampleSchema = z.object({
+export const KTXSampleSchema = z.object({
 	qualifiers: z.array(QUALIFIERS),
 	channelType: CHANNEL_TYPES,
 	bitLength: z.number(),
 	bitOffset: z.number(),
-	samplePosition: QuadNumberArraySchema,
+	samplePosition: KTXQuadNumberArraySchema,
 	sampleLower: z.number(),
 	sampleUpper: z.number(),
 });
-export type SampleSchema = z.infer<typeof SampleSchema>;
+export type KTXSample = z.infer<typeof KTXSampleSchema>;
 
-export const DataFormatDescriptorBlockSchema = z.object({
+export const KTXDataFormatDescriptorBlockSchema = z.object({
 	descriptorType: DESCRIPTOR_TYPES,
 	vendorId: VENDOR_IDS,
 	descriptorBlockSize: z.number(),
@@ -581,19 +582,19 @@ export const DataFormatDescriptorBlockSchema = z.object({
 	transferFunction: TRANSFER_FUNCTIONS,
 	colorPrimaries: COLOR_PRIMARIES,
 	colorModel: COLOR_MODELS,
-	texelBlockDimension: QuadNumberArraySchema,
-	bytesPlane: OctetNumberArraySchema,
-	samples: z.array(SampleSchema),
+	texelBlockDimension: KTXQuadNumberArraySchema,
+	bytesPlane: KTXOctetNumberArraySchema,
+	samples: z.array(KTXSampleSchema),
 });
-export type DataFormatDescriptorBlockSchema = z.infer<typeof DataFormatDescriptorBlockSchema>;
+export type KTXDataFormatDescriptorBlock = z.infer<typeof KTXDataFormatDescriptorBlockSchema>;
 
-export const DataFormatDescriptorSchema = z.object({
+export const KTXDataFormatDescriptorSchema = z.object({
 	totalSize: z.number(),
-	blocks: z.array(DataFormatDescriptorBlockSchema),
+	blocks: z.array(KTXDataFormatDescriptorBlockSchema),
 });
-export type DataFormatDescriptorSchema = z.infer<typeof DataFormatDescriptorSchema>;
+export type KTXDataFormatDescriptor = z.infer<typeof KTXDataFormatDescriptorSchema>;
 
-export const MessageSchema = z.union([
+export const KTXMessageSchema = z.union([
 	z.string(),
 	z.looseObject({
 		id: z.number().optional(),
@@ -602,23 +603,23 @@ export const MessageSchema = z.union([
 		details: z.string().optional(),
 	}),
 ]);
-export type MessageSchema = z.infer<typeof MessageSchema>;
+export type KTXMessage = z.infer<typeof KTXMessageSchema>;
 
-export const KeyValueDataSchema = z.looseObject({
+export const KTXKeyValueDataSchema = z.looseObject({
 	KTXorientation: z.string().optional(),
 	KTXwriter: z.string(),
 	KTXwriterScParams: z.string().optional(),
 });
-export type KeyValueDataSchema = z.infer<typeof KeyValueDataSchema>;
+export type KTXKeyValueData = z.infer<typeof KTXKeyValueDataSchema>;
 
 // Main KTX Schema
 export const KTXInfoSchema = z.object({
 	$schema: z.string().optional(),
 	valid: z.boolean(),
-	messages: z.array(MessageSchema),
-	header: HeaderSchema,
-	index: IndexSchema,
-	dataFormatDescriptor: DataFormatDescriptorSchema,
-	keyValueData: KeyValueDataSchema,
+	messages: z.array(KTXMessageSchema),
+	header: KTXHeaderSchema,
+	index: KTXIndexSchema,
+	dataFormatDescriptor: KTXDataFormatDescriptorSchema,
+	keyValueData: KTXKeyValueDataSchema,
 });
-export type KTXInfoSchema = z.infer<typeof KTXInfoSchema>;
+export type KTXInfo = z.infer<typeof KTXInfoSchema>;

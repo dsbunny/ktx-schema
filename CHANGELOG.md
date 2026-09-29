@@ -1,4 +1,7 @@
 # Changelog
+## v2.0.5
+- Split schema definitions to separate Schema suffix to resolve vsCode and tooling confusion.
+
 ## v1.1.4
 - Explicitly define schema for messages.
 

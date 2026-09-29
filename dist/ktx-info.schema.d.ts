@@ -496,7 +496,7 @@ export declare const CHANNEL_TYPES: z.ZodEnum<{
 export declare const IMAGE_FLAGS: z.ZodEnum<{
     ETC1S_P_FRAME: "ETC1S_P_FRAME";
 }>;
-export declare const HeaderSchema: z.ZodObject<{
+export declare const KTXHeaderSchema: z.ZodObject<{
     identifier: z.ZodString;
     vkFormat: z.ZodEnum<{
         VK_FORMAT_UNDEFINED: "VK_FORMAT_UNDEFINED";
@@ -805,19 +805,19 @@ export declare const HeaderSchema: z.ZodObject<{
         KTX_SS_ZLIB: "KTX_SS_ZLIB";
     }>;
 }, z.core.$strip>;
-export type HeaderSchema = z.infer<typeof HeaderSchema>;
-export declare const OffsetLengthSchema: z.ZodObject<{
+export type KTXHeader = z.infer<typeof KTXHeaderSchema>;
+export declare const KTXOffsetLengthSchema: z.ZodObject<{
     byteOffset: z.ZodNumber;
     byteLength: z.ZodNumber;
 }, z.core.$strip>;
-export type OffsetLengthSchema = z.infer<typeof OffsetLengthSchema>;
-export declare const LevelSchema: z.ZodObject<{
+export type KTXOffsetLength = z.infer<typeof KTXOffsetLengthSchema>;
+export declare const KTXLevelSchema: z.ZodObject<{
     byteOffset: z.ZodNumber;
     byteLength: z.ZodNumber;
     uncompressedByteLength: z.ZodNumber;
 }, z.core.$strip>;
-export type LevelSchema = z.infer<typeof LevelSchema>;
-export declare const IndexSchema: z.ZodObject<{
+export type KTXLevel = z.infer<typeof KTXLevelSchema>;
+export declare const KTXIndexSchema: z.ZodObject<{
     dataFormatDescriptor: z.ZodObject<{
         byteOffset: z.ZodNumber;
         byteLength: z.ZodNumber;
@@ -836,12 +836,12 @@ export declare const IndexSchema: z.ZodObject<{
         uncompressedByteLength: z.ZodNumber;
     }, z.core.$strip>>;
 }, z.core.$strip>;
-export type IndexSchema = z.infer<typeof IndexSchema>;
-export declare const QuadNumberArraySchema: z.ZodTuple<[z.ZodNumber, z.ZodNumber, z.ZodNumber, z.ZodNumber], null>;
-export type QuadNumberArraySchema = z.infer<typeof QuadNumberArraySchema>;
-export declare const OctetNumberArraySchema: z.ZodTuple<[z.ZodNumber, z.ZodNumber, z.ZodNumber, z.ZodNumber, z.ZodNumber, z.ZodNumber, z.ZodNumber, z.ZodNumber], null>;
-export type OctetNumberArraySchema = z.infer<typeof OctetNumberArraySchema>;
-export declare const SampleSchema: z.ZodObject<{
+export type KTXIndex = z.infer<typeof KTXIndexSchema>;
+export declare const KTXQuadNumberArraySchema: z.ZodTuple<[z.ZodNumber, z.ZodNumber, z.ZodNumber, z.ZodNumber], null>;
+export type KTXQuadNumberArray = z.infer<typeof KTXQuadNumberArraySchema>;
+export declare const KTXOctetNumberArraySchema: z.ZodTuple<[z.ZodNumber, z.ZodNumber, z.ZodNumber, z.ZodNumber, z.ZodNumber, z.ZodNumber, z.ZodNumber, z.ZodNumber], null>;
+export type KTXOctetNumberArray = z.infer<typeof KTXOctetNumberArraySchema>;
+export declare const KTXSampleSchema: z.ZodObject<{
     qualifiers: z.ZodArray<z.ZodEnum<{
         KHR_DF_SAMPLE_DATATYPE_LINEAR: "KHR_DF_SAMPLE_DATATYPE_LINEAR";
         KHR_DF_SAMPLE_DATATYPE_EXPONENT: "KHR_DF_SAMPLE_DATATYPE_EXPONENT";
@@ -959,8 +959,8 @@ export declare const SampleSchema: z.ZodObject<{
     sampleLower: z.ZodNumber;
     sampleUpper: z.ZodNumber;
 }, z.core.$strip>;
-export type SampleSchema = z.infer<typeof SampleSchema>;
-export declare const DataFormatDescriptorBlockSchema: z.ZodObject<{
+export type KTXSample = z.infer<typeof KTXSampleSchema>;
+export declare const KTXDataFormatDescriptorBlockSchema: z.ZodObject<{
     descriptorType: z.ZodEnum<{
         KHR_DF_KHR_DESCRIPTORTYPE_BASICFORMAT: "KHR_DF_KHR_DESCRIPTORTYPE_BASICFORMAT";
         KHR_DF_KHR_DESCRIPTORTYPE_ADDITIONAL_PLANES: "KHR_DF_KHR_DESCRIPTORTYPE_ADDITIONAL_PLANES";
@@ -1167,8 +1167,8 @@ export declare const DataFormatDescriptorBlockSchema: z.ZodObject<{
         sampleUpper: z.ZodNumber;
     }, z.core.$strip>>;
 }, z.core.$strip>;
-export type DataFormatDescriptorBlockSchema = z.infer<typeof DataFormatDescriptorBlockSchema>;
-export declare const DataFormatDescriptorSchema: z.ZodObject<{
+export type KTXDataFormatDescriptorBlock = z.infer<typeof KTXDataFormatDescriptorBlockSchema>;
+export declare const KTXDataFormatDescriptorSchema: z.ZodObject<{
     totalSize: z.ZodNumber;
     blocks: z.ZodArray<z.ZodObject<{
         descriptorType: z.ZodEnum<{
@@ -1378,20 +1378,20 @@ export declare const DataFormatDescriptorSchema: z.ZodObject<{
         }, z.core.$strip>>;
     }, z.core.$strip>>;
 }, z.core.$strip>;
-export type DataFormatDescriptorSchema = z.infer<typeof DataFormatDescriptorSchema>;
-export declare const MessageSchema: z.ZodUnion<readonly [z.ZodString, z.ZodObject<{
+export type KTXDataFormatDescriptor = z.infer<typeof KTXDataFormatDescriptorSchema>;
+export declare const KTXMessageSchema: z.ZodUnion<readonly [z.ZodString, z.ZodObject<{
     id: z.ZodOptional<z.ZodNumber>;
     type: z.ZodOptional<z.ZodString>;
     message: z.ZodString;
     details: z.ZodOptional<z.ZodString>;
 }, z.core.$loose>]>;
-export type MessageSchema = z.infer<typeof MessageSchema>;
-export declare const KeyValueDataSchema: z.ZodObject<{
+export type KTXMessage = z.infer<typeof KTXMessageSchema>;
+export declare const KTXKeyValueDataSchema: z.ZodObject<{
     KTXorientation: z.ZodOptional<z.ZodString>;
     KTXwriter: z.ZodString;
     KTXwriterScParams: z.ZodOptional<z.ZodString>;
 }, z.core.$loose>;
-export type KeyValueDataSchema = z.infer<typeof KeyValueDataSchema>;
+export type KTXKeyValueData = z.infer<typeof KTXKeyValueDataSchema>;
 export declare const KTXInfoSchema: z.ZodObject<{
     $schema: z.ZodOptional<z.ZodString>;
     valid: z.ZodBoolean;
@@ -1945,4 +1945,4 @@ export declare const KTXInfoSchema: z.ZodObject<{
         KTXwriterScParams: z.ZodOptional<z.ZodString>;
     }, z.core.$loose>;
 }, z.core.$strip>;
-export type KTXInfoSchema = z.infer<typeof KTXInfoSchema>;
+export type KTXInfo = z.infer<typeof KTXInfoSchema>;
