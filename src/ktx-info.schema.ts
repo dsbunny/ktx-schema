@@ -2,6 +2,7 @@
 // REF: https://github.com/KhronosGroup/KTX-Software/blob/a3603eda5c068cd91ab9729b3dddd81e5967ed88/tools/ktx/schema/info.json
 
 import * as z from "zod";
+import { dsbunnyRegistry } from '@dsbunny/zod-registry';
 
 // Define enum-like constants
 export const VK_FORMATS = z.enum([
@@ -296,35 +297,53 @@ export const VK_FORMATS = z.enum([
 	"VK_FORMAT_A1B5G5R5_UNORM_PACK16_KHR",
 	"VK_FORMAT_A4R4G4B4_UNORM_PACK16",
 	"VK_FORMAT_A4B4G4R4_UNORM_PACK16",
-]);
+]).register(dsbunnyRegistry, {
+	id: 'VK_FORMATS',
+	description: 'The schema for Vulkan formats',
+});
 
 export const SUPERCOMPRESSION_SCHEMES = z.enum([
 	"KTX_SS_NONE",
 	"KTX_SS_BASIS_LZ",
 	"KTX_SS_ZSTD",
 	"KTX_SS_ZLIB",
-]);
+]).register(dsbunnyRegistry, {
+	id: 'SUPERCOMPRESSION_SCHEMES',
+	description: 'The schema for KTX supercompression schemes',
+});
 
 export const DESCRIPTOR_TYPES = z.enum([
 	"KHR_DF_KHR_DESCRIPTORTYPE_BASICFORMAT",
 	"KHR_DF_KHR_DESCRIPTORTYPE_ADDITIONAL_PLANES",
 	"KHR_DF_KHR_DESCRIPTORTYPE_ADDITIONAL_DIMENSIONS",
-]);
+]).register(dsbunnyRegistry, {
+	id: 'DESCRIPTOR_TYPES',
+	description: 'The schema for KTX descriptor types',
+});
 
 export const VENDOR_IDS = z.enum([
 	"KHR_DF_VENDORID_KHRONOS",
-]);
+]).register(dsbunnyRegistry, {
+	id: 'VENDOR_IDS',
+	description: 'The schema for KTX vendor IDs',
+});
 
 export const VERSION_NUMBERS = z.enum([
 	"KHR_DF_VERSIONNUMBER_1_1",
 	"KHR_DF_VERSIONNUMBER_1_2",
 	"KHR_DF_VERSIONNUMBER_1_3",
-]);
+]).register(dsbunnyRegistry, {
+	id: 'VERSION_NUMBERS',
+	description: 'The schema for KTX version numbers',
+});
 
 export const FLAGS = z.enum([
 	"KHR_DF_FLAG_ALPHA_PREMULTIPLIED",
 	"KHR_DF_FLAG_ALPHA_STRAIGHT",
-]);
+]).register(dsbunnyRegistry, {
+	id: 'FLAGS',
+	description: 'The schema for KTX flags',
+});
 
 export const TRANSFER_FUNCTIONS = z.enum([
 	"KHR_DF_TRANSFER_UNSPECIFIED",
@@ -346,7 +365,10 @@ export const TRANSFER_FUNCTIONS = z.enum([
 	"KHR_DF_TRANSFER_ACESCC",
 	"KHR_DF_TRANSFER_ACESCCT",
 	"KHR_DF_TRANSFER_ADOBERGB",
-]);
+]).register(dsbunnyRegistry, {
+	id: 'TRANSFER_FUNCTIONS',
+	description: 'The schema for KTX transfer functions',
+});
 
 export const COLOR_PRIMARIES = z.enum([
 	"KHR_DF_PRIMARIES_UNSPECIFIED",
@@ -361,7 +383,10 @@ export const COLOR_PRIMARIES = z.enum([
 	"KHR_DF_PRIMARIES_PAL525",
 	"KHR_DF_PRIMARIES_DISPLAYP3",
 	"KHR_DF_PRIMARIES_ADOBERGB",
-]);
+]).register(dsbunnyRegistry, {
+	id: 'COLOR_PRIMARIES',
+	description: 'The schema for KTX color primaries',
+});
 
 export const COLOR_MODELS = z.enum([
 	"KHR_DF_MODEL_UNSPECIFIED",
@@ -394,14 +419,20 @@ export const COLOR_MODELS = z.enum([
 	"KHR_DF_MODEL_PVRTC",
 	"KHR_DF_MODEL_PVRTC2",
 	"KHR_DF_MODEL_UASTC",
-]);
+]).register(dsbunnyRegistry, {
+	id: 'COLOR_MODELS',
+	description: 'The schema for KTX color models',
+});
 
 export const QUALIFIERS = z.enum([
 	"KHR_DF_SAMPLE_DATATYPE_LINEAR",
 	"KHR_DF_SAMPLE_DATATYPE_EXPONENT",
 	"KHR_DF_SAMPLE_DATATYPE_SIGNED",
 	"KHR_DF_SAMPLE_DATATYPE_FLOAT",
-]);
+]).register(dsbunnyRegistry, {
+	id: 'QUALIFIERS',
+	description: 'The schema for KTX qualifiers',
+});
 
 export const CHANNEL_TYPES = z.enum([
 	"KHR_DF_CHANNEL_RGBSDA_RED",
@@ -507,11 +538,17 @@ export const CHANNEL_TYPES = z.enum([
 	"KHR_DF_CHANNEL_UNSPECIFIED_13",
 	"KHR_DF_CHANNEL_UNSPECIFIED_14",
 	"KHR_DF_CHANNEL_UNSPECIFIED_15",
-]);
+]).register(dsbunnyRegistry, {
+	id: 'KHR_DF_CHANNELS',
+	description: 'The schema for KHR_DF channels',
+});
 
 export const IMAGE_FLAGS = z.enum([
 	"ETC1S_P_FRAME",
-]);
+]).register(dsbunnyRegistry, {
+	id: 'IMAGE_FLAGS',
+	description: 'The schema for KTX image flags',
+});
 
 // Schema definitions
 export const KTXHeaderSchema = z.object({
@@ -525,17 +562,26 @@ export const KTXHeaderSchema = z.object({
 	faceCount: z.number(),
 	levelCount: z.number(),
 	supercompressionScheme: SUPERCOMPRESSION_SCHEMES,
+}).register(dsbunnyRegistry, {
+	id: 'KTXHeaderSchema',
+	description: 'The schema for KTX header',
 });
 export type KTXHeader = z.infer<typeof KTXHeaderSchema>;
 
 export const KTXOffsetLengthSchema = z.object({
 	byteOffset: z.number(),
 	byteLength: z.number(),
+}).register(dsbunnyRegistry, {
+	id: 'KTXOffsetLengthSchema',
+	description: 'The schema for KTX offset and length',
 });
 export type KTXOffsetLength = z.infer<typeof KTXOffsetLengthSchema>;
 
 export const KTXLevelSchema = KTXOffsetLengthSchema.extend({
 	uncompressedByteLength: z.number(),
+}).register(dsbunnyRegistry, {
+	id: 'KTXLevelSchema',
+	description: 'The schema for KTX level',
 });
 export type KTXLevel = z.infer<typeof KTXLevelSchema>;
 
@@ -544,10 +590,16 @@ export const KTXIndexSchema = z.object({
 	keyValueData: KTXOffsetLengthSchema,
 	supercompressionGlobalData: KTXOffsetLengthSchema,
 	levels: z.array(KTXLevelSchema),
+}).register(dsbunnyRegistry, {
+	id: 'KTXIndexSchema',
+	description: 'The schema for KTX index',
 });
 export type KTXIndex = z.infer<typeof KTXIndexSchema>;
 
-export const KTXQuadNumberArraySchema = z.tuple([z.number(), z.number(), z.number(), z.number()]);
+export const KTXQuadNumberArraySchema = z.tuple([z.number(), z.number(), z.number(), z.number()]).register(dsbunnyRegistry, {
+	id: 'KTXQuadNumberArraySchema',
+	description: 'The schema for KTX quad number array',
+});
 export type KTXQuadNumberArray = z.infer<typeof KTXQuadNumberArraySchema>;
 
 export const KTXOctetNumberArraySchema = z.tuple([
@@ -559,7 +611,10 @@ export const KTXOctetNumberArraySchema = z.tuple([
 	z.number(),
 	z.number(),
 	z.number(),
-]);
+]).register(dsbunnyRegistry, {
+	id: 'KTXOctetNumberArraySchema',
+	description: 'The schema for KTX octet number array',
+});
 export type KTXOctetNumberArray = z.infer<typeof KTXOctetNumberArraySchema>;
 
 export const KTXSampleSchema = z.object({
@@ -570,6 +625,9 @@ export const KTXSampleSchema = z.object({
 	samplePosition: KTXQuadNumberArraySchema,
 	sampleLower: z.number(),
 	sampleUpper: z.number(),
+}).register(dsbunnyRegistry, {
+	id: 'KTXSampleSchema',
+	description: 'The schema for KTX sample',
 });
 export type KTXSample = z.infer<typeof KTXSampleSchema>;
 
@@ -585,12 +643,18 @@ export const KTXDataFormatDescriptorBlockSchema = z.object({
 	texelBlockDimension: KTXQuadNumberArraySchema,
 	bytesPlane: KTXOctetNumberArraySchema,
 	samples: z.array(KTXSampleSchema),
+}).register(dsbunnyRegistry, {
+	id: 'KTXDataFormatDescriptorBlockSchema',
+	description: 'The schema for KTX data format descriptor block',
 });
 export type KTXDataFormatDescriptorBlock = z.infer<typeof KTXDataFormatDescriptorBlockSchema>;
 
 export const KTXDataFormatDescriptorSchema = z.object({
 	totalSize: z.number(),
 	blocks: z.array(KTXDataFormatDescriptorBlockSchema),
+}).register(dsbunnyRegistry, {
+	id: 'KTXDataFormatDescriptorSchema',
+	description: 'The schema for KTX data format descriptor',
 });
 export type KTXDataFormatDescriptor = z.infer<typeof KTXDataFormatDescriptorSchema>;
 
@@ -602,13 +666,19 @@ export const KTXMessageSchema = z.union([
 		message: z.string(),
 		details: z.string().optional(),
 	}),
-]);
+]).register(dsbunnyRegistry, {
+	id: 'KTXMessageSchema',
+	description: 'The schema for KTX message',
+});
 export type KTXMessage = z.infer<typeof KTXMessageSchema>;
 
 export const KTXKeyValueDataSchema = z.looseObject({
 	KTXorientation: z.string().optional(),
 	KTXwriter: z.string(),
 	KTXwriterScParams: z.string().optional(),
+}).register(dsbunnyRegistry, {
+	id: 'KTXKeyValueDataSchema',
+	description: 'The schema for KTX key-value data',
 });
 export type KTXKeyValueData = z.infer<typeof KTXKeyValueDataSchema>;
 
@@ -621,5 +691,8 @@ export const KTXInfoSchema = z.object({
 	index: KTXIndexSchema,
 	dataFormatDescriptor: KTXDataFormatDescriptorSchema,
 	keyValueData: KTXKeyValueDataSchema,
+}).register(dsbunnyRegistry, {
+	id: 'KTXInfoSchema',
+	description: 'The schema for KTX info',
 });
 export type KTXInfo = z.infer<typeof KTXInfoSchema>;
