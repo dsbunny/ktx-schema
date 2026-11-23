@@ -1946,3 +1946,4 @@ export declare const KTXInfoSchema: z.ZodObject<{
     }, z.core.$loose>;
 }, z.core.$strip>;
 export type KTXInfo = z.infer<typeof KTXInfoSchema>;
+//# sourceMappingURL=ktx-info.schema.d.ts.map
